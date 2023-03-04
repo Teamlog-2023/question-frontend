@@ -12,13 +12,17 @@ const Question = () => {
           <QuestionText>이곳에 질문해주세요!</QuestionText>
         </QuestionTextWrapper>
         <QuestionInputWrapper>
-          <QuestionSelect onChange={(e) => { setClub(e.target.value as unknown as ClubList) }} style={{ background: Club[club].color }}>
+          <QuestionSelect
+            onChange={(e) => {
+              setClub(e.target.value as unknown as ClubList);
+            }}
+            style={{ background: Club[club].color }}
+          >
             {Club.map((e, i) => (
-              <QuestionOption onClick={() => console.log(1)} value={e.id} key={i}>
+              <QuestionOption value={e.id} key={i}>
                 {e.name}
               </QuestionOption>
-            )
-            )}
+            ))}
           </QuestionSelect>
           <QuestionInput placeholder="텍스트를 입력해주세요." />
           <QuestionButton>제출</QuestionButton>

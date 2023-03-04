@@ -8,15 +8,9 @@ const Answer = (props: Question) => {
   const [date, setDate] = useState<string>("");
 
   useEffect(() => {
-    const res = elapsedTime(props.createdAt)
-    setDate(res)
-  }, [props.createdAt])
-
-  // useEffect(() => {
-  //   console.log(props)
-  // }, [props])
-
-  console.log(ClubList, Club)
+    const res = elapsedTime(props.createdAt);
+    setDate(res);
+  }, [props.createdAt]);
 
   return (
     <>
@@ -48,7 +42,7 @@ const Wrapper = styled.div`
   gap: 20px;
   border-radius: 8px;
   color: white;
-  background-color: #B82A2D;
+  background-color: #b82a2d;
   padding: 12px;
 `;
 
