@@ -10,6 +10,7 @@ const Question = () => {
   const handleSubmit = async (body: { question: string; id: ClubList }) => {
     await postQuestion(body);
     alert("질문이 등록되었습니다.");
+    setQuestion("");
   };
 
   return (
@@ -122,6 +123,7 @@ const QuestionButton = styled.button`
   color: #ffffff;
   padding: 14px 0;
   border: none;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     font-size: 16px;
