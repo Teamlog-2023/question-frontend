@@ -2,20 +2,20 @@ import Answer from "@/components/Answer";
 import Container from "@/components/Container/Container";
 import Header from "@/components/Header";
 import Question from "@/components/Question";
-import { ClubList } from "@/constants/club";
+import { Club, ClubList } from "@/constants/club";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Question as QuestionType } from "@/types/Question";
 import getQuestions from "@/api/question/get";
 
 const Index = () => {
-  const [questions, setQuestions] = useState<any>();
+  const [questions, setQuestions] = useState<QuestionType[]>();
 
   useEffect(() => {
     (async () => {
-      const res = await getQuestions()
+      const res = await getQuestions();
       setQuestions(res);
-    })()
+    })();
   }, [setQuestions]);
 
   return (
@@ -27,19 +27,18 @@ const Index = () => {
         </QuestionWrapper>
         <AnswerWrapper>
           <AnswerColumn>
-            {questions?.map((e: QuestionType) => {if (e.answer) return <Answer question={e.question} answer={e.answer} writer={{}} createdAt={e.createdAt} /> })}
-            <Answer
-              question="남영재"
-              answer="안녕하세요"
-              writer={{ id: ClubList.TeamLog, name: "teamlog" }}
-              createdAt={new Date()}
-            />
-            <Answer
-              question="남영재"
-              answer="안녕하세요"
-              writer={{ id: ClubList.Unifox, name: "unifox" }}
-              createdAt={new Date()}
-            />
+            {questions?.map((e: QuestionType) => {
+              if (e.answer)
+                return (
+                  <Answer
+                    id={e.id}
+                    uuid={e.uuid}
+                    question={e.question}
+                    answer={e.answer}
+                    createdAt={e.createdAt}
+                  />
+                );
+            })}
           </AnswerColumn>
         </AnswerWrapper>
       </Container>

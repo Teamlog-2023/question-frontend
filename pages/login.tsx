@@ -1,10 +1,16 @@
+import login from "@/api/auth/login";
 import Center from "@/components/Container/Center";
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const Login = () => {
-  const loginHandler = ({ credential }: CredentialResponse) => {
-    console.log(credential);
+  const router = useRouter();
+
+  const loginHandler = async ({ credential }: CredentialResponse) => {
+    const res = await login({ credential: credential as string });
+    console.log(res);
+    router.push("/answer");
   };
 
   return (

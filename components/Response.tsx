@@ -1,3 +1,4 @@
+import patchQuestion from "@/api/question/patch";
 import elapsedTime from "@/utils/elapsedTime";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -10,6 +11,12 @@ interface Props {
 
 const Response = (props: Props) => {
   const [date, setDate] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+
+  const submitHandler = async () => {
+    const res = await patchQuestion({ uuid: props.id, answer: content });
+    console.log(res);
+  };
 
   useEffect(() => {
     const res = elapsedTime(props.createdAt);
@@ -24,8 +31,11 @@ const Response = (props: Props) => {
         </Question>
         <QuestionCreated>{date}</QuestionCreated>
       </QuestionWrapper>
-      <ResponseInput />
-      <Submit>답변하기</Submit>
+      <ResponseInput
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+      />
+      <Submit onClick={() => submitHandler()}>답변하기</Submit>
     </Wrapper>
   );
 };

@@ -1,8 +1,9 @@
-import { User } from "./User";
+import { ClubList } from "@/constants/club";
 
 export interface Question {
+  uuid: string;
+  id: ClubList;
   question: string;
   answer: string;
-  writer: User;
   createdAt: Date;
 }

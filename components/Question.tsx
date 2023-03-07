@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import { Club, ClubList } from "@/constants/club";
 import { useState } from "react";
+import postQuestion from "@/api/question/post";
 
 const Question = () => {
   const [club, setClub] = useState<ClubList>(ClubList.Layer7);
+  const [question, setQuestion] = useState<string>("");
+
+  const handleSubmit = async (body: { question: string; id: ClubList }) => {
+    await postQuestion(body);
+    alert("질문이 등록되었습니다.");
+  };
 
   return (
     <>
@@ -24,8 +31,14 @@ const Question = () => {
               </QuestionOption>
             ))}
           </QuestionSelect>
-          <QuestionInput placeholder="텍스트를 입력해주세요." />
-          <QuestionButton>제출</QuestionButton>
+          <QuestionInput
+            onChange={(e) => setQuestion(e.target.value)}
+            value={question}
+            placeholder="텍스트를 입력해주세요."
+          />
+          <QuestionButton onClick={() => handleSubmit({ question, id: club })}>
+            제출
+          </QuestionButton>
         </QuestionInputWrapper>
       </Wrapper>
     </>

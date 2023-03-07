@@ -14,15 +14,15 @@ const Answer = (props: Question) => {
 
   return (
     <>
-      <Wrapper style={{ background: Club[props.writer.id].color }}>
+      <Wrapper style={{ background: Club[props.id].color }}>
         <QuestionWrapper>
           <QuestionStrong>Q.</QuestionStrong>&nbsp;{props.question}
         </QuestionWrapper>
         <DescriptionWrapper>
           <WriterWrapper>
-            <WriterImage src={Club[props.writer.id].image} />
+            <WriterImage src={Club[props.id].image} />
             <WriterDescription>
-              <WriterName>{props.writer.name}</WriterName>
+              <WriterName>{Club[props.id].name}</WriterName>
               <WriteDate>{date}</WriteDate>
             </WriterDescription>
           </WriterWrapper>
