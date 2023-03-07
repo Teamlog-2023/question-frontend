@@ -1,11 +1,16 @@
 import Center from "@/components/Container/Center";
+import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import styled from "styled-components";
 
 const Login = () => {
+  const loginHandler = ({ credential }: CredentialResponse) => {
+    console.log(credential);
+  };
+
   return (
     <Center>
       <Wrapper>
-        <Button>구글 계정으로 로그인</Button>
+        <GoogleLogin onSuccess={loginHandler} />
       </Wrapper>
     </Center>
   );
