@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   font-size: 3vmax;
   font-weight: 700;
   border-bottom: 1px solid #BCBCBC;
+  background-color: white;
 `;
 
 const Logo = styled.img`

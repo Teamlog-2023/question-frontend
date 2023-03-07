@@ -136,10 +136,6 @@ const QuestionSelect = styled.select`
   &:hover {
     background-color: #3b3b3b;
   }
-
-  @media (max-width: 768px) {
-    height: 120px;
-  }
 `;
 
 const QuestionOption = styled.option``;

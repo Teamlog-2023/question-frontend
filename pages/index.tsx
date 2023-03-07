@@ -3,9 +3,21 @@ import Container from "@/components/Container/Container";
 import Header from "@/components/Header";
 import Question from "@/components/Question";
 import { ClubList } from "@/constants/club";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Question as QuestionType } from "@/types/Question";
+import getQuestions from "@/api/question/get";
 
 const Index = () => {
+  const [questions, setQuestions] = useState<any>();
+
+  useEffect(() => {
+    (async () => {
+      const res = await getQuestions()
+      setQuestions(res);
+    })()
+  }, [setQuestions]);
+
   return (
     <>
       <Header />
@@ -15,6 +27,7 @@ const Index = () => {
         </QuestionWrapper>
         <AnswerWrapper>
           <AnswerColumn>
+            {questions?.map((e: QuestionType) => {if (e.answer) return <Answer question={e.question} answer={e.answer} writer={{}} createdAt={e.createdAt} /> })}
             <Answer
               question="남영재"
               answer="안녕하세요"
@@ -25,26 +38,6 @@ const Index = () => {
               question="남영재"
               answer="안녕하세요"
               writer={{ id: ClubList.Unifox, name: "unifox" }}
-              createdAt={new Date()}
-            />
-          </AnswerColumn>
-          <AnswerColumn>
-            <Answer
-              question="남영재"
-              answer="안녕하세요"
-              writer={{ id: ClubList.Nefus, name: "nefus" }}
-              createdAt={new Date()}
-            />
-            <Answer
-              question="남영재"
-              answer="안녕하세요"
-              writer={{ id: ClubList.Layer7, name: "layer7" }}
-              createdAt={new Date()}
-            />
-            <Answer
-              question="남영재"
-              answer="안녕하세요"
-              writer={{ id: ClubList.Emotion, name: "emotion" }}
               createdAt={new Date()}
             />
           </AnswerColumn>
@@ -74,6 +67,7 @@ const AnswerWrapper = styled(Wrapper)`
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
 
   @media (max-width: 1440px) {
     flex-direction: column;
@@ -94,21 +88,7 @@ const AnswerColumn = styled.div`
 
   overflow-y: auto;
 
-  &:first-child {
-    padding: 24px 12px 24px 24px;
-
-    @media (max-width: 1440px) {
-      padding: 24px 24px 0 24px;
-    }
-  }
-
-  &:last-child {
-    padding: 24px 24px 24px 12px;
-
-    @media (max-width: 1440px) {
-      padding: 24px 24px 24px 24px;
-    }
-  }
+  padding: 24px;
 `;
 
 export default Index;
