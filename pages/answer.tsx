@@ -23,7 +23,7 @@ const Answer = () => {
         <Title>답변하기</Title>
         <ContentWrapper>
           {contents?.map((e: Question) => {
-            if (!e.answer) {
+            if (!e.answer && e.question) {
               return (
                 <Response
                   id={e.uuid}
@@ -53,6 +53,7 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 `;
 
