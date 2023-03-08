@@ -18,6 +18,7 @@ const Question = () => {
       <Wrapper>
         <QuestionTextWrapper>
           <QuestionText>이곳에 질문해주세요!</QuestionText>
+          <QuestionSubText>아래 버튼을 눌러 질문할 동아리를 선택해주세요.</QuestionSubText>
         </QuestionTextWrapper>
         <QuestionInputWrapper>
           <QuestionSelect
@@ -51,6 +52,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 30px;
   min-width: 380px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 `;
 
 const QuestionTextWrapper = styled.div`
@@ -58,6 +63,8 @@ const QuestionTextWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const QuestionText = styled.h1`
@@ -79,6 +86,17 @@ const QuestionText = styled.h1`
     height: 1vmax;
     background-color: #fff1a6;
     z-index: -1;
+  }
+`;
+
+const QuestionSubText = styled.p`
+  font-weight: 400;
+  font-size: 1vmax;
+  text-align: center;
+  color: #bfbfbf;
+
+  @media screen and (max-width: 1440px) {
+    font-size: 1.5vmax;
   }
 `;
 

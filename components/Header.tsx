@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Header = () => {
   return (
     <>
-      <Wrapper>정보호호과<Logo src="/images/logo.svg" /></Wrapper>
+      <Wrapper>정보보호과<Logo src="/images/logo.svg" /></Wrapper>
     </>
   )
 }
